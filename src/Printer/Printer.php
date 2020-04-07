@@ -11,7 +11,7 @@ class Printer extends Client
         return $this->json('/api/bind_machine', compact('machine_no', 'machine_secret'));
     }
 
-    public function getPrinters($machine_no)
+    public function getPrintersByMachineNo($machine_no)
     {
         return $this->json('/api/list_devices', compact('machine_no'));
     }

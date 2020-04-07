@@ -40,8 +40,8 @@ $app = new Application($config);
 // 绑定软件到账号下
 $app->printer->bindMachine($machine_no, $machine_secret);
 
-// 获取软件下一站挂载的设备
-$app->printer->getPrinters($machine_no);
+// 获取软件下一站挂载的设备，多个软件用「,」分隔
+$app->printer->getPrintersByMachineNo($machine_no);
 
 // 创建打印任务
 $app->printer->createPrinterTask($device_no, $print_content, $print_id);

@@ -40,8 +40,15 @@ class Client extends AbstractClient implements ApiContract
         }
 
         try {
+
             $rsp = $this->getClient()->request($method, $uri, $options);
         } catch (\Throwable $e) {
+            $this->app->log->info('request', [
+                'method' => $method,
+                'url' => $uri,
+                'data' => $options,
+            ]);
+
             $this->app->log->error("请求出现错误 code: {$e->getCode()} message: {$e->getMessage()}");
             throw new VeriderApiException($e->getMessage(), $e->getCode(), $e->getPrevious());
         }
