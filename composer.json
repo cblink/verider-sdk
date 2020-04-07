@@ -1,0 +1,26 @@
+{
+    "name": "cblink/verider-sdk",
+    "description": "Package description here.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "牟勇",
+            "email": "my242551325@gmail.com"
+        }
+    ],
+    "require": {
+        "mouyong/foundation-sdk": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cblink\\Verider\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cblink\\Verider\\LaravelServiceProvider"
+            ]
+        }
+    }
+}
