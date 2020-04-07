@@ -14,7 +14,6 @@ use Cblink\Verider\Printer\PrinterServiceProvider;
 class Application extends Foundation
 {
     protected $config = [
-        // 登录后打开 https://dev.10ss.net/admin/listapp ，点击具体的应用进行查看
         'open_user_id' => 'your-client-id',
         'open_user_secret' => 'your-client-secret',
 
