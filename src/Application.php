@@ -21,6 +21,7 @@ class Application extends Foundation
             'name' => 'verider',
         ],
         'http' => [
+            'response_type' => 'array', // array, raw
             'timeout' => 3,
             'base_uri' => 'http://rcloud.verysum.com:8088',
             'http_errors' => false,
