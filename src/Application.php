@@ -14,6 +14,7 @@ use Cblink\Verider\Printer\PrinterServiceProvider;
 class Application extends Foundation
 {
     protected $config = [
+        'debug' => false,
         'open_user_id' => 'your-client-id',
         'open_user_secret' => 'your-client-secret',
 
@@ -23,7 +24,7 @@ class Application extends Foundation
         'http' => [
             'response_type' => 'array', // array, raw
             'timeout' => 3,
-            'base_uri' => 'http://rcloud.verysum.com:8088',
+            'base_uri' => 'https://api.open.veryclub.net',
             'http_errors' => false,
             'headers' => [
                 'content-type' => 'application/json',

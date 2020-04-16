@@ -10,6 +10,19 @@ use Cblink\Verider\Exceptions\MethodRetryTooManyException;
 
 class Client extends AbstractClient implements ApiContract
 {
+    private const BASE_URI_PRODUCTION = 'https://api.open.veryclub.net';
+
+    private const BASE_URI_TEST = 'https://api.open.veryclub.net/test';
+
+    public function getOptions($options)
+    {
+        $debug = $this->app->options['debug'] ?? false;
+
+        $options['base_uri'] = $debug ? Client::BASE_URI_TEST : Client::BASE_URI_PRODUCTION;
+
+        return $options;
+    }
+
     public function sign(array $data = []): array
     {
         $data['open_user_id'] = $this->app['options']['open_user_id'];
@@ -40,8 +53,7 @@ class Client extends AbstractClient implements ApiContract
         }
 
         try {
-
-            $rsp = $this->getClient()->request($method, $uri, $options);
+            $rsp = $this->getClient()->request($method, $uri, $this->getOptions($options));
         } catch (\Throwable $e) {
             $this->app->log->info('request', [
                 'method' => $method,

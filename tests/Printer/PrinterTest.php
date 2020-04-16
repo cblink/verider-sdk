@@ -8,12 +8,20 @@ use Cblink\Verider\Printer\Printer;
 class PrinterTest extends TestCase
 {
     /** @test */
+    public function accountVerification()
+    {
+        $this->make(Printer::class)
+            ->accountVerification()
+            ->assertPostUri('/cp/user/valid')
+            ->assertPostJson([]);
+    }
+
+    /** @test */
     public function bindMachine()
     {
-        $client = $this->make(Printer::class);
-
-        $client->bindMachine('test-machine_no', 'test-machine_secret')
-            ->assertPostUri('/api/bind_machine')
+        $this->make(Printer::class)
+            ->bindMachine('test-machine_no', 'test-machine_secret')
+            ->assertPostUri('/cp/machine/bind')
             ->assertPostJson([
                 'machine_no' => 'test-machine_no',
                 'machine_secret' => 'test-machine_secret',
@@ -23,10 +31,9 @@ class PrinterTest extends TestCase
     /** @test */
     public function getPrintersByMachineNo()
     {
-        $client = $this->make(Printer::class);
-
-        $client->getPrintersByMachineNo('test-machine_no')
-            ->assertPostUri('/api/list_devices')
+        $this->make(Printer::class)
+            ->getPrintersByMachineNo('test-machine_no')
+            ->assertPostUri('/cp/device/list')
             ->assertPostJson([
                 'machine_no' => 'test-machine_no',
             ]);
@@ -35,10 +42,9 @@ class PrinterTest extends TestCase
     /** @test */
     public function createPrinterTask()
     {
-        $client = $this->make(Printer::class);
-
-        $client->createPrinterTask('test-device_no', 'test-print_content', 'test-print_id')
-            ->assertPostUri('/api/print')
+        $this->make(Printer::class)
+            ->createPrinterTask('test-device_no', 'test-print_content', 'test-print_id')
+            ->assertPostUri('/cp/device/print')
             ->assertPostJson([
                 'device_no' => 'test-device_no',
                 'print_content' => 'test-print_content',
@@ -49,10 +55,9 @@ class PrinterTest extends TestCase
     /** @test */
     public function getMachineStatusByMachineCode()
     {
-        $client = $this->make(Printer::class);
-
-        $client->getMachineStatusByMachineCode('test-device_no')
-            ->assertPostUri('/api/device_status')
+        $this->make(Printer::class)
+            ->getMachineStatusByMachineCode('test-device_no')
+            ->assertPostUri('/cp/device/status')
             ->assertPostJson([
                 'device_no' => 'test-device_no',
             ]);
