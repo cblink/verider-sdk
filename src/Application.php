@@ -23,7 +23,7 @@ class Application extends Foundation
         ],
         'http' => [
             'response_type' => 'array', // array, raw
-            'timeout' => 3,
+            'timeout' => 10,
             'base_uri' => 'https://api.open.veryclub.net',
             'http_errors' => false,
             'headers' => [
