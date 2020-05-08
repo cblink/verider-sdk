@@ -16,6 +16,11 @@ class Printer extends Client
         return $this->json('/cp/machine/bind', compact('machine_no', 'machine_secret'));
     }
 
+    public function unbindMachine($machine_no)
+    {
+        return $this->json('cp/machine/unbind', compact('machine_no'));
+    }
+
     public function getPrintersByMachineNo($machine_no)
     {
         return $this->json('/cp/device/list', compact('machine_no'));
